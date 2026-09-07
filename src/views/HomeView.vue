@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import TourDates from '../components/TourDates.vue';
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <TourDates />
   </main>
-</template>
+</template> 
