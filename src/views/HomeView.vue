@@ -1,9 +1,11 @@
 <script setup>
-import TourDates from '../components/TourDates.vue';
+import StartPage from '@/components/StartPage.vue';
+import Today from '@/components/Today.vue';
 </script>
 
 <template>
   <main>
-    <TourDates />
+    <StartPage/>
+    <Today/>
   </main>
 </template> 
