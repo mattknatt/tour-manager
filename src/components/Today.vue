@@ -91,7 +91,7 @@ findNextShow();
 .upcoming-shows{
     display:block;
     margin: 0 auto;
-    width: 40%;
+    width: 60%;
     margin-top: 100px;
 }
 
