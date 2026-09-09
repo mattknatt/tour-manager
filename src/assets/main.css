@@ -4,14 +4,34 @@
 :root {
     --bg: rgb(232, 236, 231);
     --surface: #fffdf7;
+    --nav-bg: antiquewhite;
+    --input-bg: #fff;
     --text: #2b2b2b;
     --muted: #6d6d6d;
     --accent: #6f1d1d;
     --accent-hover: #8d2727;
+    --accent-text: #fff;
+    --accent-soft: rgba(111, 29, 29, 0.06);
     --danger: #b3261e;
     --border: rgba(0, 0, 0, 0.12);
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     --radius: 12px;
+}
+
+html.dark {
+    --bg: #1c201c;
+    --surface: #262a26;
+    --nav-bg: #2f342f;
+    --input-bg: #1c201c;
+    --text: #e8e6e0;
+    --muted: #a3a09a;
+    --accent: #d98c8c;
+    --accent-hover: #e8a5a5;
+    --accent-text: #2b1414;
+    --accent-soft: rgba(217, 140, 140, 0.14);
+    --danger: #f08a80;
+    --border: rgba(255, 255, 255, 0.14);
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -25,6 +45,7 @@ body {
     color: var(--text);
     line-height: 1.6;
     padding: 24px 16px 64px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 h1 {
@@ -58,7 +79,7 @@ button {
     font: inherit;
     font-weight: 300;
     background-color: var(--accent);
-    color: #fff;
+    color: var(--accent-text);
     border: none;
     border-radius: 8px;
     padding: 8px 16px;
@@ -74,7 +95,7 @@ button:hover {
 input {
     font: inherit;
     color: var(--text);
-    background-color: #fff;
+    background-color: var(--input-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 8px 12px;

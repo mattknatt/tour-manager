@@ -111,8 +111,7 @@ findNextShow();
 }
 
 .cancelled {
-
-    color: red;
+    color: var(--danger);
     font-style: italic;
 }
 </style>

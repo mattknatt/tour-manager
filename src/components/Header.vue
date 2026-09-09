@@ -1,7 +1,20 @@
+<script setup>
+import { ref, watchEffect } from 'vue'
+
+const isDark = ref(false)
+
+watchEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark.value)
+})
+</script>
+
 <template>
     <nav>
         <RouterLink class="menuitem" to="/">Home</RouterLink>
         <RouterLink class="menuitem" to="/dates">Schedule</RouterLink>
+        <button class="theme-toggle" @click="isDark = !isDark">
+            {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+        </button>
     </nav>
 
 </template>
@@ -12,11 +25,13 @@ nav {
     margin-bottom: 40px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     font-size: 16px;
-    background-color: antiquewhite;
+    background-color: var(--nav-bg);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
+    transition: background-color 0.2s ease;
 }
 
 .menuitem {
@@ -33,7 +48,15 @@ nav {
 
 .menuitem:hover {
     color: var(--accent);
-    background-color: rgba(111, 29, 29, 0.06);
+    background-color: var(--accent-soft);
+}
+
+.theme-toggle {
+    flex-shrink: 0;
+    margin-right: 12px;
+    padding: 6px 12px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .menuitem.router-link-active {
