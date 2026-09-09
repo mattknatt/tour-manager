@@ -1,13 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 
+:root {
+    --bg: rgb(232, 236, 231);
+    --surface: #fffdf7;
+    --text: #2b2b2b;
+    --muted: #6d6d6d;
+    --accent: #6f1d1d;
+    --accent-hover: #8d2727;
+    --danger: #b3261e;
+    --border: rgba(0, 0, 0, 0.12);
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --radius: 12px;
+}
+
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: "Inter", sans-serif;
-    background-color: rgb(232, 236, 231);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px 16px 64px;
 }
 
 h1 {
@@ -15,7 +32,9 @@ h1 {
     font-size: 60px;
     text-align: center;
     font-style: italic;
-    color: #6f1d1d;
+    color: var(--accent);
+    line-height: 1.1;
+    letter-spacing: -1px;
     margin-bottom: 70px;
 }
 
@@ -23,12 +42,44 @@ h2 {
     text-align: center;
     font-family: Fraunces, serif;
     font-size: 30px;
+    line-height: 1.2;
+    color: var(--accent);
     margin-bottom: 30px;
 }
 
 h3 {
     font-family: Fraunces, serif;
     font-size: 20px;
+    color: var(--muted);
     margin-bottom: 10px;
 }
 
+button {
+    font: inherit;
+    font-weight: 300;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+
+input {
+    font: inherit;
+    color: var(--text);
+    background-color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+input:focus {
+    outline: 1px solid var(--accent);
+}

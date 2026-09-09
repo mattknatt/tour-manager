@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import TourDates from '../components/TourDates.vue'
+import DateView from '@/views/DateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +13,7 @@ const router = createRouter({
     {
       path: '/dates',
       name: 'dates',
-      component: TourDates
+      component: DateView
     }
   ],
 })

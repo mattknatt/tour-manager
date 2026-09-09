@@ -14,7 +14,7 @@ tourDates.value.sort((a, b) => a.date - b.date)
 function addTourdate() {
 
     tourDates.value.push({
-        id: tourDates.value[tourDates.value.length - 1].id + 1,
+        id: tourDates.value.length === 0 ? 1 : Math.max(...tourDates.value.map(tourDate => tourDate.id)) + 1,
         date: new Date(newDate.value),
         venue: newVenue.value,
         city: newCity.value,
@@ -64,9 +64,11 @@ function cancelShow(id) {
         <ul>
             <li :class="{cancelled : tourDate.isCancelled}" v-for="tourDate in tourDates" :key="tourDate.id">
                 {{ tourDate.date.toLocaleDateString() }}, {{ tourDate.venue }}, {{ tourDate.city }}
-                <button @click="removeTourdate(tourDate.id)">Remove</button>
-                <button v-if="!tourDate.isCancelled" @click="cancelShow(tourDate.id)">Cancel show</button>
-                <p v-else>Cancelled</p>
+                <div class="actions">
+                    <button @click="removeTourdate(tourDate.id)">Remove</button>
+                    <button v-if="!tourDate.isCancelled" @click="cancelShow(tourDate.id)">Cancel show</button>
+                    <p v-else>Cancelled</p>
+                </div>
             </li>
         </ul>
     </div>
@@ -82,63 +84,86 @@ function cancelShow(id) {
                     <input type="text" v-model="newMember">
                     <button class="member-button" type="button" @click="addMember">Add member</button>
                 </li>
-                <button type="submit">Submit</button>
             </ul>
+            <button type="submit">Submit</button>
         </form>
     </div>
 </template>
 
 <style scoped>
 .cancelled {
-
-    color: red;
+    color: var(--danger);
     font-style: italic;
 }
 .dates {
     display: block;
     margin: 0 auto;
-    background-color: white;
-    max-width: 70%;
-    border-radius: 15px;
+    background-color: var(--surface);
+    max-width: 700px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     margin-bottom: 30px;
 }
 
 .dates li {
     display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .dates button {
-    display: block;
-    margin-left: auto;
-    margin-right: 10px;
+    padding: 4px 12px;
+    font-size: 14px;
 }
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+
 
 ul {
     list-style-type: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 20px;
 }
 
 .dates ul li {
-    padding: 10px;
-    border: 1px solid black;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.dates ul li:last-child {
+    border-bottom: none;
 }
 
 button {
     display: block;
     margin: 0 auto;
-    padding: 10px;
-    border-radius: 10px;
-
-
 }
 
 .dateForm {
     display: block;
-    margin: 0 auto;
-    width: 30%;
+    margin: 24px auto 0;
+    max-width: 420px;
     padding: 10px;
+}
+
+.dateForm li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.dateForm input {
+    flex: 1;
 }
 
 .dateForm label {
@@ -148,6 +173,6 @@ button {
 }
 
 .member-button{
-    margin-bottom: 20px;
+    flex-shrink: 0;
 }
 </style>

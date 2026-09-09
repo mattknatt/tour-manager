@@ -33,39 +33,41 @@ findNextShow();
 <template>
     <h1>Tour Manager</h1>
     <div class="wrapper">
-        <section class="today">
+        <section class="today" v-if="nextShow">
             <h2 v-if="isShowToday">Todays Show </h2>
-            <h2 v-else="!isShowToday">Next Show </h2>
+            <h2 v-else>Next Show </h2>
             <article class="today-head">
                 <p :class="{cancelled : nextShow.isCancelled}">{{ nextShow.date.toLocaleDateString() }} - {{ nextShow.venue }} - {{ nextShow.city }}</p>
             </article>
-            <ul v-if="!nextShow.isCancelled">
-                <div class="band-members">
-                    <h3>Band members:</h3>
-                <li v-for="member in nextShow.members">{{ member }}</li>
-                </div>
+            <div class="band-members" v-if="!nextShow.isCancelled">
+                <h3>Band members:</h3>
+            <ul >
+                <li v-for="member in nextShow.members" :key="member">{{ member }}</li>
             </ul>
-            <h2 class="cancelled" v-else>CANCELLED</h2>
+        </div>
+        <h2 class="cancelled" v-else>CANCELLED</h2>
+        <article class="upcoming-shows">
+            <h2>Upcoming Shows</h2>
+            <ul>
+                <li v-for="date in upcomingShows" :key="date.id">{{ date.date.toLocaleDateString() }} - {{ date.venue }} - {{ date.city }}
+                </li>
+            </ul>
+        </article>
         </section>
+        <h2 v-else>No upcoming shows!</h2>
     </div>
-    <section class="upcoming-shows">
-        <h2>Upcoming Shows</h2>
-        <ul>
-            <li v-for="date in upcomingShows">{{ date.date.toLocaleDateString() }} - {{ date.venue }} - {{ date.city }}
-            </li>
-        </ul>
-    </section>
 </template>
 
 <style scoped>
 .wrapper {
     display: block;
     margin: 0 auto;
-    width: 70%;
-    border: 2px solid black;
-    border-radius: 15px;
-    background-color: beige;
-    padding: 20px;
+    max-width: 700px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 32px;
 }
 
 .today {
@@ -91,8 +93,17 @@ findNextShow();
 .upcoming-shows{
     display:block;
     margin: 0 auto;
-    width: 60%;
-    margin-top: 100px;
+    max-width: 700px;
+    margin-top: 64px;
+}
+
+.upcoming-shows li {
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--border);
+}
+
+.upcoming-shows li:last-child {
+    border-bottom: none;
 }
 
 .upcoming-shows h2 {
