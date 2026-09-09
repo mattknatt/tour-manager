@@ -1,11 +1,10 @@
 <script setup>
-import StartPage from '@/components/StartPage.vue';
 import Today from '@/components/Today.vue';
+import UpcomingShows from '@/components/UpcomingShows.vue';
 </script>
 
 <template>
   <main>
-    <StartPage/>
     <Today/>
   </main>
 </template> 
