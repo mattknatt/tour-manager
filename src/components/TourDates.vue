@@ -59,7 +59,7 @@ function cancelShow(id) {
 </script>
 
 <template>
-    <h2>Tour Schedule</h2>
+    <h1>Schedule</h1>
     <div class="dates">
         <ul>
             <li :class="{cancelled : tourDate.isCancelled}" v-for="tourDate in tourDates" :key="tourDate.id">
@@ -108,6 +108,7 @@ function cancelShow(id) {
 
 .dates li {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 8px;
 }
@@ -118,9 +119,8 @@ function cancelShow(id) {
 }
 
 .actions {
-    margin-left: auto;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     flex-shrink: 0;
 }
@@ -174,5 +174,16 @@ button {
 
 .member-button{
     flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+.dates li {
+    flex-direction: row;
+
+}
+
+.actions {
+    margin-left: auto;
+}
 }
 </style>
