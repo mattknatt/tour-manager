@@ -14,7 +14,7 @@ const upcomingShows = computed(() => {
 function findNextShow() {
     for (let i = 0; i < tourDates.value.length; i++) {
 
-        if (tourDates.value[i].date === today.value) {
+        if (tourDates.value[i].date.toDateString() === today.value.toDateString()) {
             isShowToday.value = true
             nextShow.value = tourDates.value[i]
             break
