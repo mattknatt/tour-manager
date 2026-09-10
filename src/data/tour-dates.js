@@ -24,6 +24,22 @@ export const tourDates = ref([
         city: 'New York',
         members: ['John Bonham', 'John Paul Jones', 'Robert Plant', 'Jimmy Page'],
         isCancelled: false
+    },
+    {
+        id: 4,
+        date: new Date('2026-10-04'),
+        venue: 'Paradiso',
+        city: 'Amsterdam',
+        members: ['John Bonham', 'John Paul Jones', 'Robert Plant', 'Jimmy Page'],
+        isCancelled: false
+    },
+    {
+        id: 5,
+        date: new Date('2026-10-05'),
+        venue: 'Vega',
+        city: 'Copenhagen',
+        members: ['John Bonham', 'John Paul Jones', 'Robert Plant', 'Jimmy Page'],
+        isCancelled: false
     }
 ])
 

@@ -64,8 +64,4 @@ nav {
     font-weight: 700;
 }
 
-@media screen and (min-width: 768px) {
-
-   
-}
 </style>

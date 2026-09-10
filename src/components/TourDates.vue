@@ -72,7 +72,8 @@ function cancelShow(id) {
             </li>
         </ul>
     </div>
-    <button @click="showForm = true">Add tour date</button>
+    <button v-if="!showForm" @click="showForm = true">Add tour date</button>
+    <h2 v-else>New tour date</h2>
     <div class="dateForm">
         <form v-if="showForm" @submit.prevent="addTourdate">
             <ul>
@@ -82,9 +83,14 @@ function cancelShow(id) {
                 <li>
                     <label>Members</label>
                     <input type="text" v-model="newMember">
-                    <button class="member-button" type="button" @click="addMember">Add member</button>
                 </li>
             </ul>
+            <div class="added-members" v-if="newMembers.length > 0">
+                <ul>
+                    <li v-for="member in newMembers"> {{ member }}</li>
+                </ul>
+            </div>
+            <button class="member-button" type="button" @click="addMember">Add member</button>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -106,6 +112,10 @@ function cancelShow(id) {
     margin-bottom: 30px;
 }
 
+h2 {
+    margin-bottom: 0;
+}
+
 .dates li {
     display: flex;
     flex-direction: column;
@@ -125,10 +135,17 @@ function cancelShow(id) {
     flex-shrink: 0;
 }
 
+.added-members {   
+    color: var(--accent);
+}
 
+.added-members ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 ul {
-    list-style-type: none;
     display: flex;
     flex-direction: column;
     padding: 8px 20px;
@@ -172,8 +189,17 @@ button {
     padding: 10px;
 }
 
+.added-members li {
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--surface);
+}
+
 .member-button{
     flex-shrink: 0;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -185,5 +211,13 @@ button {
 .actions {
     margin-left: auto;
 }
+
+.added-members ul{
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+}
+
+
 }
 </style>

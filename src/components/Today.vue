@@ -7,18 +7,18 @@ const isShowToday = ref(false)
 const nextShow = ref()
 
 const upcomingShows = computed(() => {
-    return tourDates.value.filter(date => date !== nextShow.value)
+    return tourDates.value.filter(date => (date !== nextShow.value) && (date.date > nextShow.value.date))
 
 })
 
 function findNextShow() {
     for (let i = 0; i < tourDates.value.length; i++) {
 
-        if (tourDates.value[i].date.toLocaleDateString() === today.value.toLocaleDateString()) {
+        if (tourDates.value[i].date === today.value) {
             isShowToday.value = true
             nextShow.value = tourDates.value[i]
             break
-        } else if (tourDates.value[i].date.toLocaleDateString() > today.value.toLocaleDateString()) {
+        } else if (tourDates.value[i].date > today.value) {
             nextShow.value = tourDates.value[i]
             break
         }
@@ -49,7 +49,7 @@ findNextShow();
         <article class="upcoming-shows">
             <h2>Upcoming Shows</h2>
             <ul>
-                <li v-for="date in upcomingShows" :key="date.id">{{ date.date.toLocaleDateString() }} - {{ date.venue }} - {{ date.city }}
+                <li :class="{cancelled : date.isCancelled}" v-for="date in upcomingShows" :key="date.id">{{ date.date.toLocaleDateString() }} - {{ date.venue }} - {{ date.city }}
                 </li>
             </ul>
         </article>
